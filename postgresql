@@ -1,0 +1,41 @@
+dwamalina@DESKTOP-28U0KAN:~$ source airflow_env/bin/activate
+(airflow_env) dwamalina@DESKTOP-28U0KAN:~$ sudo service postgresql start
+[sudo] password for dwamalina:
+ * Starting PostgreSQL 14 database server                                                                        [ OK ]
+(airflow_env) dwamalina@DESKTOP-28U0KAN:~$ sudo service postgresql status
+14/main (port 5432): online
+(airflow_env) dwamalina@DESKTOP-28U0KAN:~$ sudo -u postgres psql
+could not change directory to "/home/dwamalina": Permission denied
+psql (14.11 (Ubuntu 14.11-0ubuntu0.22.04.1))
+Type "help" for help.
+
+postgres=# show user;
+ERROR:  syntax error at or near "user"
+LINE 1: show user;
+             ^
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+postgres=# \l
+                              List of databases
+   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges
+-----------+----------+----------+---------+---------+-----------------------
+ postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |
+ template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres
+ template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres
+(3 rows)
+
+postgres=# \dt
+                 List of relations
+ Schema |         Name          | Type  |  Owner
+--------+-----------------------+-------+----------
+ public | dags_spark_sales_data | table | postgres
+ public | data_records          | table | postgres
+ public | sales_data            | table | postgres
+ public | sales_matrix          | table | postgres
+(4 rows)
